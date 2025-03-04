@@ -1,0 +1,37 @@
+syntax = "proto2";
+
+option cc_generic_services = true;
+
+enum FRIEND_REQUEST_OP {
+    GET_FRIEND = 1;
+    ADD_FRIEND = 2;
+    AGREE_ADD = 3;
+}
+
+message FriendRequestReq {
+    required FRIEND_REQUEST_OP op_type = 1;
+    required int32 id = 2;
+    optional int32 friend_id = 3;
+}
+
+message FriendRequestRes {
+    repeated int32 ids = 1;
+    repeated string usernames = 2;
+}
+
+service FriendRequestService {
+    rpc FriendRequest(FriendRequestReq) returns (FriendRequestRes);
+}
+
+message FriendGetReq {
+    required int32 id = 1;
+}
+
+message FriendGetRes {
+    repeated int32 friend_ids = 1;
+    repeated string usernames = 2;
+}
+
+service FriendGetService {
+    rpc FriendGet(FriendGetReq) returns (FriendGetRes);
+}

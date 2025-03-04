@@ -1,0 +1,28 @@
+syntax="proto2";
+
+option cc_generic_services = true;
+
+enum OPERTYPE {
+    REGISTER = 0;
+    LOGIN = 1;
+}
+
+message LoginRequest { 
+    required OPERTYPE op_type = 1;
+    optional int32 id = 2;
+    optional string username = 3;
+    required string password = 4;
+}
+
+enum STATUS {
+    SUCCESS = 0;
+    FAILED = 1;
+}
+
+message LoginResponse {
+    required STATUS status = 1;
+}
+
+service LoginService {
+    rpc Login(LoginRequest) returns (LoginResponse);
+}

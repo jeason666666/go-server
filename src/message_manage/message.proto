@@ -1,0 +1,31 @@
+syntax = "proto2";
+
+option cc_generic_services = true;
+
+enum MESSAGE_OP {
+    SEND = 0;
+    GET = 1;
+}
+
+message one_message {
+    required int32 send_id = 1;
+    required int64 time_stamp = 2;
+    required string content = 3;
+}
+
+message MessageRequest {
+    required MESSAGE_OP op_type = 1;
+    required int32 id = 2;
+    optional int32 friend_id = 3;
+    optional int32 send_id = 4;
+    optional string message = 5;
+    optional int64 time_stamp = 6;
+}
+
+message MessageResponse {
+    repeated one_message messages = 1;
+}
+
+service MessageService {
+    rpc GetMessage(MessageRequest) returns (MessageResponse);
+}

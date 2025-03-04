@@ -1,0 +1,18 @@
+syntax="proto2";
+
+option cc_generic_services = true;
+
+message UserProfileRequest {
+    required int32 id = 1;
+}
+
+// to do 
+// add status
+// such as no such user
+message UserProfileResponse {
+    required string username = 1;
+}
+
+service UserProfileService { 
+    rpc UserProfile(UserProfileRequest) returns (UserProfileResponse);
+}

@@ -1,0 +1,44 @@
+syntax = "proto2";
+
+option cc_generic_services = true;
+
+message MesTransReq {
+    required int32 id = 1;
+    required int32 friend_id = 2;
+    required string message = 3;
+    required int64 time_stamp = 4;
+}
+
+message MesTransRes {
+
+}
+
+service MesTranService {
+    rpc TransmitMessage(MesTransReq) returns(MesTransRes);
+}
+
+
+message HeartBeatReq {
+    required int32 id = 1;
+}
+
+message HeartBeatRes {
+    required bool flag = 1;
+    optional string message = 2;
+}
+
+service HeartBeatService {
+    rpc HeartBeat(HeartBeatReq) returns (HeartBeatRes);
+}
+
+message UserOnlineReq {
+    required int32 id = 1;
+}
+
+message UserOnlineRes {
+    required bool flag = 1;
+}
+
+service UserOnlineService {
+    rpc UserOnline(UserOnlineReq) returns (UserOnlineRes);
+}
